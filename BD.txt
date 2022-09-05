@@ -1,0 +1,48 @@
+CREATE DATABASE PROJETO_TRUFA;
+
+USE PROJETO_TRUFA;
+
+CREATE TABLE cliente
+(
+  idcliente integer key auto_increment,
+  nome varchar(50),
+  datnascimento varchar(50),
+  fgativo integer  
+);
+
+
+CREATE TABLE trufa
+(
+  idtrufa integer primary key auto_increment,
+
+  sabor varchar(50),
+  valorUnidade decimal(8,2),
+  quantide integer,
+  datafabrica varchar(40),
+  fgativo integer
+
+);
+
+CREATE TABLE venda
+(
+  idvenda integer primary key auto_increment,
+  idcliente integer,
+  totvenda decimal(8,2),
+  datvenda varchar(50),
+  fgativo integer,
+  FOREIGN KEY (idcliente) REFERENCES cliente(idcliente)  	  
+);
+
+CREATE TABLE item_venda
+(
+  iditem_venda integer primary key auto_increment,
+  idtrufa integer,
+  idvenda integer,
+  quavendida integer,
+  totparcial decimal(8,2),
+  FOREIGN KEY (idvenda) REFERENCES venda(idvenda),
+  FOREIGN KEY (idtrufa) REFERENCES trufa (idtrufa)	
+ 
+);
+
+
